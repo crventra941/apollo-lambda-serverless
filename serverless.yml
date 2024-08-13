@@ -1,0 +1,26 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: devinthebacklog
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: apollo-lambda
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: apollo-lambda
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  httpApi:
+    cors: true
+
+functions:
+  graphql:
+    handler: handler.graphqlHandler
+    events:
+      - httpApi:
+          path: /graphql
+          method: GET
+      - httpApi:
+          path: /graphql
+          method: POST

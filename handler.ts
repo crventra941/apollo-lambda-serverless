@@ -1,0 +1,1 @@
+export { graphqlHandler } from './apolloServer';
