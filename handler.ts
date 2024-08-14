@@ -1,1 +1,1 @@
-export { graphqlHandler } from './apolloServer';
+export { graphqlHandler } from './src/apolloServer';

@@ -13,6 +13,19 @@ provider:
   runtime: nodejs20.x
   httpApi:
     cors: true
+  environment:
+    DYNAMODB_IMAGES_TABLE: ${self:service}-imagesTable-${sls:stage}
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:PutItem'
+            - 'dynamodb:Get*'
+            - 'dynamodb:Scan*'
+            - 'dynamodb:UpdateItem'
+            - 'dynamodb:DeleteItem'
+          Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:service}-imagesTable-${sls:stage}
 
 functions:
   graphql:
@@ -24,3 +37,17 @@ functions:
       - httpApi:
           path: /graphql
           method: POST
+
+resources:
+  Resources:
+    ImageTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: primary_key
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        KeySchema:
+          - AttributeName: primary_key
+            KeyType: HASH
+        TableName: ${self:service}-imagesTable-${sls:stage}        

@@ -12,5 +12,5 @@
   },
   "rawPath": "/",
   "routeKey": "/",
-  "body": "{\"query\": \"{getImages { imageUrl createdAt }}\"}"
+  "body": "{\"query\": \"mutation CreateImage { createImage(height: 300, width: 600, isGrayScale: true, isYoung: true) { imageUrl } } \"}"
 }
