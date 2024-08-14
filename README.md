@@ -1,3 +1,3 @@
 
-# Serverless Framework Apollo GraphQL NodeJS and T
+# Serverless Framework Apollo GraphQL NodeJS and Typescript
 

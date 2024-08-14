@@ -35,7 +35,7 @@ const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     introspection: true,
-  });
+});
 
 export const graphqlHandler = startServerAndCreateLambdaHandler(
   apolloServer,
