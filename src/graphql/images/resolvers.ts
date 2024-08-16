@@ -1,14 +1,16 @@
-import { createNewImage, getAllImages } from "../../database/images";
+import { ImageRepository } from "../../repository/ImageRepository";
+
+const imageRepository = new ImageRepository();
 
 const resolvers = {
   Query: {
     async getImages(_, __, context) {
-      return getAllImages()
+      return imageRepository.getAllImages()
     },
   },
   Mutation: {
     async createImage(_, newImage, context) {
-      return createNewImage({ ...newImage });
+      return imageRepository.createImage(newImage);
     }
   }
 };
